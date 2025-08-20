@@ -11,10 +11,20 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function(list1, list2) {
-    for (let i = 0; i < list1.length; i++) {
-        console.log("11");
-        console.log(list1);
+    let dummy = new ListNode();
+    let cur = dummy;
+
+    while (list1 && list2) {
+        if (list1.val > list2.val) {
+            cur.next = list2;
+            list2 = list2.next;
+        } else {
+            cur.next = list1;
+            list1 = list1.next;
+        }
+        cur = cur.next;
     }
-    // list1.value
-    
+    cur.next = list1 || list2;
+    return dummy.next; 
+
 };
